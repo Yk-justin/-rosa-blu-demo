@@ -1,0 +1,502 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Rosa Blu Hotel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky top nav, full-width cinematic hero, content bands in a 1120px wrapper; admin = sidebar + main */
+:root{--navy:#0B1F3A;--navy2:#13335c;--sky:#8EC5EC;--skyl:#E8F3FB;--gold:#B8923A;--goldl:#C9A24B;--bg:#FBFAF7;--card:#FFFFFF;--fg:#14233a;--mute:#5a6b82;--line:#dfe5ec;--ok:#1f7a4d;--warn:#a86a00;--bad:#b3261e;--onnavy:#F3F7FB;
+--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--sans:'Montserrat',Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1626;--card:#10233c;--fg:#e8eef6;--mute:#9fb1c7;--line:#223a58;--skyl:#16304f;--gold:#d3ae5c;--ok:#5fcf9a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1626;--card:#10233c;--fg:#e8eef6;--mute:#9fb1c7;--line:#223a58;--skyl:#16304f;--gold:#d3ae5c;--ok:#5fcf9a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--sans);padding-inline:0}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.4rem,6vw,4.4rem)}h2{font-size:clamp(1.8rem,4vw,2.7rem)}h3{font-size:1.45rem}
+p{margin:0}a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:64px}.band.alt{background:var(--skyl)}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.lead{color:var(--mute);max-width:62ch}
+.stack{display:flex;flex-direction:column;gap:14px}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;padding:11px 22px;border-radius:2px;cursor:pointer;font-weight:500;letter-spacing:.06em;font-size:.82rem;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.btn:hover{background:var(--navy2)}
+.btn.gold{background:var(--goldl);border-color:var(--goldl);color:#0B1F3A}.btn.gold:hover{background:#d8b45c}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}.btn.ghost:hover{border-color:var(--fg)}
+.btn.onhero{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}.btn.onhero:hover{background:rgba(255,255,255,.14)}
+.btn.sm{padding:6px 12px;font-size:.72rem}.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--navy);color:var(--onnavy)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:41;background:var(--navy)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.brand svg{width:44px;height:44px}
+.brand{flex-shrink:0;white-space:nowrap}.brand b{font-family:var(--serif);font-size:1.4rem;letter-spacing:.16em;line-height:1}
+.brand small{display:block;font-size:.6rem;letter-spacing:.5em;color:var(--sky);margin-top:3px}
+nav.main{display:flex;gap:2px;align-items:center;flex-wrap:wrap}
+nav.main a{color:#dbe6f2;text-decoration:none;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;padding:8px 7px;border-bottom:2px solid transparent}
+nav.main a:hover,nav.main a.on{color:#fff;border-color:var(--goldl)}
+.burger{display:none;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 12px;cursor:pointer}
+.cartpill{background:var(--goldl);color:#0B1F3A;border-radius:99px;padding:1px 8px;font-size:.7rem;margin-left:4px;font-weight:600}
+@media (max-width:1180px){.burger{display:block}nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--navy);flex-direction:column;align-items:stretch;padding:8px 16px 16px}nav.main.open{display:flex}nav.main a{padding:12px 4px}}
+.demobar{background:var(--goldl);color:#0B1F3A;font-size:.72rem;text-align:center;padding:5px 12px;letter-spacing:.04em}
+/* hero */
+.hero{position:relative;min-height:min(640px,86svh);color:#fff;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;background-size:cover;background-position:center}
+.slide.on{opacity:1}.slide.on img.kb,.slide.on video{animation:kb 14s ease-out forwards}
+.slide img,.slide video{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,58,.35),rgba(11,31,58,.82));z-index:1}
+.hero .in{position:relative;z-index:2;padding-block:80px 90px;display:flex;flex-direction:column;gap:20px;max-width:760px}
+.hero h1{color:#fff}.hero p{color:#e3ecf6;font-size:1.05rem;max-width:52ch}
+.hctl{position:absolute;z-index:3;right:max(16px,env(safe-area-inset-right,0px));bottom:24px;display:flex;gap:8px;align-items:center}
+.hctl button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:rgba(11,31,58,.5);color:#fff;cursor:pointer}
+.dots{display:flex;gap:6px;margin-right:8px}.dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4)}.dots i.on{background:var(--goldl)}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}.slide.on img.kb,.slide.on video{animation:none}}
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.card .ph{aspect-ratio:4/3;background:var(--skyl);overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.card .bd{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.price{font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-weight:700}
+.tag{display:inline-block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--line);color:var(--mute)}
+.pill{display:inline-block;font-size:.7rem;padding:2px 10px;border-radius:99px;font-weight:600;background:var(--skyl);color:var(--navy2)}
+.pill.ok{background:rgba(31,122,77,.14);color:var(--ok)}.pill.warn{background:rgba(168,106,0,.15);color:var(--warn)}.pill.bad{background:rgba(179,38,30,.14);color:var(--bad)}
+:root[data-theme="dark"] .pill{color:var(--fg)}
+.sample{position:absolute;top:8px;left:8px;background:rgba(11,31,58,.8);color:#fff;font-size:.6rem;letter-spacing:.08em;padding:2px 7px;text-transform:uppercase}
+/* forms */
+label{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);display:flex;flex-direction:column;gap:5px;font-weight:500}
+input,select,textarea{background:var(--card);border:1px solid var(--line);padding:10px 12px;border-radius:2px;width:100%;min-width:0}
+.fgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.panel{background:var(--card);border:1px solid var(--line);padding:22px}
+.err{color:var(--bad);font-size:.82rem}.muted{color:var(--mute)}.small{font-size:.8rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:var(--card);padding:6px 14px;border-radius:99px;cursor:pointer;font-size:.8rem}.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.split{display:grid;gap:28px;grid-template-columns:minmax(0,1fr) 340px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:minmax(0,1fr)}}
+table{border-collapse:collapse;width:100%;font-size:.85rem}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.tw{overflow-x:auto}
+.line{display:flex;justify-content:space-between;gap:12px}.line.tot{font-weight:600;font-size:1.05rem;border-top:1px solid var(--line);padding-top:8px}
+footer{background:var(--navy);color:#cfdbea;padding-block:44px;margin-top:0}
+footer a{color:var(--sky)}
+/* toast + modal */
+#toasts{position:fixed;z-index:90;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--navy);color:#fff;padding:12px 18px;border-left:4px solid var(--goldl);box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:320px;font-size:.85rem}
+.toast.bad{border-color:var(--bad)}
+.modalbg{position:fixed;inset:0;background:rgba(5,12,24,.6);z-index:80;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:var(--card);max-width:460px;width:100%;padding:24px;display:flex;flex-direction:column;gap:14px;max-height:90svh;overflow:auto}
+.cookie{position:fixed;z-index:70;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:560px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.25);padding:18px;display:flex;flex-direction:column;gap:10px}
+.empty{padding:36px;text-align:center;color:var(--mute);border:1px dashed var(--line)}
+.spin{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:sp .8s linear infinite;margin:20px auto}@keyframes sp{to{transform:rotate(360deg)}}
+/* admin */
+.adm{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:calc(100svh - 68px)}
+.side{background:var(--navy);color:#cfdbea;padding:18px 10px;display:flex;flex-direction:column;gap:2px}
+.side a{padding:10px 12px;text-decoration:none;font-size:.82rem;color:#cfdbea;border-left:3px solid transparent;cursor:pointer}
+.side a:hover{background:rgba(255,255,255,.07)}.side a.on{border-color:var(--goldl);background:rgba(255,255,255,.1);color:#fff}
+.amain{padding:24px max(16px,env(safe-area-inset-right,0px)) 40px 24px;display:flex;flex-direction:column;gap:20px;min-width:0}
+.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.kpi{background:var(--card);border:1px solid var(--line);padding:14px 16px}.kpi small{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}.kpi b{display:block;font-family:var(--serif);font-size:1.9rem;margin-top:2px;font-variant-numeric:tabular-nums}
+@media (max-width:860px){.adm{grid-template-columns:minmax(0,1fr)}.side{flex-direction:row;overflow-x:auto;padding:8px}.side a{white-space:nowrap;border-left:0;border-bottom:3px solid transparent}.side a.on{border-bottom-color:var(--goldl)}.amain{padding:16px}}
+.thumb{width:84px;height:60px;object-fit:cover;background:var(--skyl);display:block}
+.mgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+</style>
+<div id="hdr"></div><div id="app"></div><div id="ftr"></div><div id="toasts" aria-live="polite"></div><div id="overlay"></div>
+<script>
+/* ===== Helpers ===== */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const kes=n=>'KES '+Math.round(Number(n)||0).toLocaleString('en-KE');
+const iso=d=>{const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};
+const today=()=>iso(new Date()), addDays=(s,n)=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return iso(d)};
+const nights=(a,b)=>Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/864e5);
+const fdate=s=>s?new Date(s+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'';
+const ftime=t=>new Date(t).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+const ref=p=>p+'-'+Array.from({length:6},()=>'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)]).join('');
+const uid=()=>Math.random().toString(36).slice(2,9);
+/* Original placeholder art (no third-party photos). Replace via Admin > Media. */
+function ph(label,kind,hue){hue=hue??210;
+ const shapes={hotel:'<rect x="190" y="120" width="220" height="150" fill="#0B1F3A" opacity=".85"/><rect x="250" y="80" width="100" height="40" fill="#0B1F3A" opacity=".85"/><g fill="#C9A24B"><rect x="205" y="140" width="18" height="24"/><rect x="240" y="140" width="18" height="24"/><rect x="342" y="140" width="18" height="24"/><rect x="377" y="140" width="18" height="24"/><rect x="205" y="190" width="18" height="24"/><rect x="377" y="190" width="18" height="24"/></g>',
+ room:'<rect x="150" y="170" width="300" height="70" rx="6" fill="#fff" opacity=".9"/><rect x="150" y="140" width="300" height="38" rx="6" fill="#0B1F3A" opacity=".85"/><rect x="170" y="150" width="90" height="26" rx="8" fill="#fff"/><rect x="340" y="150" width="90" height="26" rx="8" fill="#fff"/><rect x="150" y="240" width="12" height="24" fill="#0B1F3A"/><rect x="438" y="240" width="12" height="24" fill="#0B1F3A"/>',
+ food:'<circle cx="300" cy="170" r="92" fill="#fff" opacity=".92"/><circle cx="300" cy="170" r="70" fill="none" stroke="#C9A24B" stroke-width="3"/><circle cx="280" cy="160" r="26" fill="#C9A24B" opacity=".8"/><circle cx="326" cy="184" r="22" fill="#2f7d4f" opacity=".75"/><circle cx="318" cy="146" r="14" fill="#b3261e" opacity=".7"/>',
+ event:'<g fill="#fff" opacity=".92"><circle cx="220" cy="190" r="34"/><circle cx="300" cy="170" r="34"/><circle cx="380" cy="190" r="34"/></g><g fill="#C9A24B"><circle cx="220" cy="190" r="6"/><circle cx="300" cy="170" r="6"/><circle cx="380" cy="190" r="6"/></g><path d="M120 110 Q300 40 480 110" fill="none" stroke="#C9A24B" stroke-width="3"/>'};
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${hue},55%,62%)"/><stop offset="1" stop-color="hsl(${hue+12},60%,22%)"/></linearGradient></defs><rect width="600" height="400" fill="url(#g)"/>${shapes[kind]||shapes.hotel}<text x="300" y="352" text-anchor="middle" font-family="Georgia,serif" font-size="22" letter-spacing="4" fill="#fff" opacity=".9">${esc(label).toUpperCase()}</text><text x="300" y="378" text-anchor="middle" font-family="Arial" font-size="11" letter-spacing="3" fill="#fff" opacity=".6">PLACEHOLDER IMAGE</text></svg>`;
+ return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}
+const LOGO=`<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#0B1F3A" stroke="#fff" stroke-opacity=".25"/><circle cx="60" cy="60" r="52" fill="none" stroke="#C9A24B" stroke-width="1.5"/><g transform="translate(60 54)"><path d="M0 -30C14 -30 24 -18 22 -6C20 8 8 16 0 16C-8 16 -20 8 -22 -6C-24 -18 -14 -30 0 -30Z" fill="#8EC5EC"/><path d="M0 -22C10 -22 17 -13 15 -4C13 5 6 10 0 10C-6 10 -13 5 -15 -4C-17 -13 -10 -22 0 -22Z" fill="#DCEEFA"/><path d="M0 -14C6 -14 10 -8 9 -3C8 2 3 5 0 5C-3 5 -8 2 -9 -3C-10 -8 -6 -14 0 -14Z" fill="#fff"/><path d="M-1 -8C3 -8 5 -4 3 -1C1 2 -3 1 -3 -2C-3 -4 -2 -5 0 -5" fill="none" stroke="#0B1F3A" stroke-width="1.2" stroke-linecap="round"/></g><g fill="#C9A24B"><rect x="44" y="82" width="32" height="14" rx="1"/><rect x="49" y="76" width="22" height="6"/><rect x="57" y="70" width="6" height="6"/></g></svg>`;
+
+/* ===== Data (sample data, clearly marked) ===== */
+const KEY='rosablu-demo-v1';
+function seed(){const t=today();
+ const M=[
+  {id:'m1',type:'image',title:'Hotel frontage',cat:'HOTEL',src:ph('Rosa Blu Hotel','hotel',212),active:true,slide:true,placeholder:true},
+  {id:'m2',type:'image',title:'Signature suite',cat:'ROOM',src:ph('Signature Suite','room',205),active:true,slide:true,placeholder:true},
+  {id:'m3',type:'image',title:'Restaurant table',cat:'RESTAURANT',src:ph('The Restaurant','food',38),active:true,slide:true,placeholder:true},
+  {id:'m4',type:'image',title:'Weddings and events',cat:'EVENT',src:ph('Events','event',280),active:true,slide:true,placeholder:true},
+  {id:'m5',type:'image',title:'Garden courtyard',cat:'HOTEL',src:ph('Courtyard','hotel',160),active:true,slide:false,placeholder:true},
+  {id:'m6',type:'image',title:'Breakfast spread',cat:'FOOD',src:ph('Breakfast','food',20),active:true,slide:false,placeholder:true}];
+ const R=[['r1','Standard Queen',6500,2,1,'A calm, light-filled room with a queen bed, work desk and garden outlook.',['Wi-Fi','Breakfast included','Hot shower','TV'],212],
+  ['r2','Deluxe King',9500,2,2,'Generous king room with sitting area, rain shower and private balcony.',['Wi-Fi','Breakfast included','Balcony','Mini-bar','Air conditioning'],200],
+  ['r3','Executive Suite',15000,3,2,'Separate lounge and bedroom, soaking tub and a dedicated work space.',['Wi-Fi','Breakfast included','Lounge','Bathtub','Air conditioning','Coffee machine'],225],
+  ['r4','Family Room',12000,4,3,'Two double beds and extra floor space for families travelling together.',['Wi-Fi','Breakfast included','Two beds','TV','Kettle'],190],
+  ['r5','BnB Studio',5500,2,0,'Compact self-contained studio with kitchenette for longer, simpler stays.',['Wi-Fi','Kitchenette','Self check-in','Hot shower'],170]]
+  .map(([id,name,price,adults,children,desc,amen,h])=>({id,name,price,adults,children,desc,amen,active:true,blocks:[],img:id,sample:true,hue:h}));
+ R.forEach((r,i)=>M.push({id:r.id,type:'image',title:r.name,cat:'ROOM',src:ph(r.name,'room',r.hue),active:true,slide:false,placeholder:true}));
+ R[4].blocks.push({from:addDays(t,10),to:addDays(t,13),reason:'Plumbing maintenance (sample)'});
+ const cats=['Breakfast','Starters','Main Courses','Traditional Kenyan Dishes','Snacks','Fast Food','Desserts','Hot Drinks','Cold Drinks','Fresh Juices'];
+ const I=[['Breakfast','Full English Breakfast','Eggs, sausage, bacon, beans, toast and grilled tomato.',950,[['Extra egg',80],['Hash browns',120]]],
+  ['Breakfast','Mandazi & Chai','Fresh coconut mandazi with spiced Kenyan tea.',350,[]],
+  ['Starters','Beef Samosas (4)','Crisp pastry parcels with spiced beef and kachumbari.',450,[['Chilli sauce',30]]],
+  ['Starters','Tomato & Basil Soup','Slow-roasted tomato soup with garlic croutons.',500,[]],
+  ['Main Courses','Grilled Tilapia','Whole tilapia, lemon butter, served with ugali or chips.',1450,[['Extra kachumbari',100]]],
+  ['Main Courses','Chicken Curry','Coastal-style coconut chicken curry with steamed rice.',1250,[['Chapati',60]]],
+  ['Traditional Kenyan Dishes','Nyama Choma (500g)','Charcoal-grilled goat with ugali, kachumbari and pepper.',1800,[['Extra ugali',100]]],
+  ['Traditional Kenyan Dishes','Pilau Masala','Fragrant spiced rice with tender beef.',950,[]],
+  ['Traditional Kenyan Dishes','Githeri Special','Maize and beans, slow-cooked with vegetables and avocado.',650,[]],
+  ['Traditional Kenyan Dishes','Ugali & Sukuma Wiki','Ugali with sauteed collard greens and a fried egg.',500,[['Beef stew',250]]],
+  ['Snacks','Bhajia','Spiced potato fritters with tamarind chutney.',400,[]],
+  ['Fast Food','Chicken Burger & Chips','Crumbed chicken breast, cheese, slaw and a side of chips.',1100,[['Bacon',120],['Extra cheese',60]]],
+  ['Fast Food','Chips Masala','Crispy chips tossed in spicy tomato masala.',500,[]],
+  ['Desserts','Malva Pudding','Warm sponge with caramel sauce and custard.',550,[]],
+  ['Desserts','Fruit Platter','Seasonal tropical fruit, served chilled.',450,[]],
+  ['Hot Drinks','Kenyan Dawa','Honey, lemon and ginger with fresh mint.',300,[]],
+  ['Hot Drinks','Coffee','Locally roasted Kenyan coffee, filter or espresso.',300,[['Extra shot',70]]],
+  ['Cold Drinks','Soda (300ml)','Assorted soft drinks, served cold.',150,[]],
+  ['Cold Drinks','Mineral Water (500ml)','Still bottled water.',100,[]],
+  ['Fresh Juices','Passion Fruit Juice','Freshly pressed, lightly sweetened.',350,[]],
+  ['Fresh Juices','Mango & Pineapple','Blended fresh mango and pineapple.',380,[]]]
+  .map(([cat,name,desc,price,opts],i)=>({id:'i'+(i+1),cat,name,desc,price,avail:i!==13,offer:i===6?1500:null,opts:opts.map(([n,p])=>({n,p})),img:'f'+(i+1),sample:true,hue:(i*37)%360}));
+ I.forEach(f=>M.push({id:f.img,type:'image',title:f.name,cat:'FOOD',src:ph(f.name,'food',f.hue),active:true,slide:false,placeholder:true}));
+ const P=(st,m,d)=>({status:st,method:m,ref:d?'DEMO-'+uid().toUpperCase():'',demo:!!d});
+ const rs=[['RB-DEMO01','r2','Amina Wanjiru','0700 000 001','amina@example.test',addDays(t,0),addDays(t,3),2,0,'CONFIRMED',P('PAID (DEMO)','Card',1)],
+  ['RB-DEMO02','r1','Brian Otieno','0700 000 002','brian@example.test',addDays(t,1),addDays(t,2),1,0,'PENDING',P('UNPAID','Pay at hotel')],
+  ['RB-DEMO03','r3','Chebet Kiprop','0700 000 003','chebet@example.test',addDays(t,-2),addDays(t,0),2,1,'CHECKED_IN',P('PAID (DEMO)','M-Pesa',1)],
+  ['RB-DEMO04','r4','Daniel Mwangi','0700 000 004','daniel@example.test',addDays(t,5),addDays(t,8),3,2,'CONFIRMED',P('UNPAID','Pay at hotel')],
+  ['RB-DEMO05','r5','Esther Njeri','0700 000 005','esther@example.test',addDays(t,-6),addDays(t,-3),2,0,'CHECKED_OUT',P('PAID (DEMO)','Card',1)]]
+  .map(([r,room,name,phone,email,i,o,a,c,s,pay])=>{const rm=R.find(x=>x.id===room);const n=nights(i,o);return{ref:r,roomId:room,name,phone,email,in:i,out:o,nights:n,adults:a,children:c,total:n*rm.price,status:s,pay,created:Date.now()-864e5*3,sample:true}});
+ const mk=(r,items,type,name,phone,st,pay,ago)=>{const it=items.map(([id,q])=>{const f=I.find(x=>x.id===id);const u=f.offer||f.price;return{id,name:f.name,qty:q,unit:u,opts:[],note:'',total:u*q}});const sub=it.reduce((a,b)=>a+b.total,0);const fee=type==='DELIVERY'?200:0;
+  return{ref:r,items:it,type,area:type==='DELIVERY'?'a1':'',name,phone,addr:type==='DELIVERY'?'Sample address, near the town centre':'',instr:'',time:'',sub,fee,total:sub+fee,status:st,pay,created:Date.now()-ago,sample:true}};
+ const os=[mk('FO-DEMO01',[['i7',2],['i20',2]],'DELIVERY','Faith Achieng','0700 000 011','PENDING',P('UNPAID','Pay on collection'),6e5),
+  mk('FO-DEMO02',[['i12',1],['i13',1]],'COLLECTION','George Kamau','0700 000 012','PREPARING',P('PAID (DEMO)','M-Pesa',1),18e5),
+  mk('FO-DEMO03',[['i8',3]],'DELIVERY','Halima Yusuf','0700 000 013','OUT_FOR_DELIVERY',P('PAID (DEMO)','Card',1),36e5),
+  mk('FO-DEMO04',[['i1',2]],'COLLECTION','Ian Mutua','0700 000 014','DELIVERED',P('PAID (DEMO)','M-Pesa',1),864e5)];
+ return{v:1,settings:{name:'Rosa Blu Hotel',phone:'[Hotel phone number - add in Admin > Settings]',whatsapp:'[WhatsApp number - add in Admin > Settings]',email:'[Hotel email - add in Admin > Settings]',location:'[Physical address - add in Admin > Settings]',hours:'Reception 24 hours. Restaurant 07:00 to 22:00.',openFrom:'07:00',openTo:'22:00',currency:'KES',delivery:true,payAtHotel:true,payOnCollection:true,cancelHours:48,cancelNote:'Free cancellation up to 48 hours before check-in. Later cancellations may be charged the first night.'},
+  media:M,rooms:R,cats,menu:I,areas:[{id:'a1',name:'Town centre (sample)',fee:200,min:800,mins:35,active:true},{id:'a2',name:'Nearby estates (sample)',fee:350,min:1000,mins:50,active:true},{id:'a3',name:'Outskirts (sample)',fee:600,min:1500,mins:70,active:false}],reservations:rs,orders:os,customers:[],audit:[]}}
+let db; try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){db=null} if(!db||db.v!==1) db=seed();
+let saveWarned=false;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){if(!saveWarned){saveWarned=true;toast('Storage is full. Large uploads are kept only until you close this page.','bad')}}}
+function audit(a,d){db.audit.unshift({t:Date.now(),by:S.user?S.user.name+' ('+S.user.role+')':'guest',a,d});db.audit=db.audit.slice(0,200)}
+const S={user:null,cart:[],route:'home',consent:null};
+try{S.consent=JSON.parse(localStorage.getItem('rosablu-consent')||'null')}catch(e){}
+try{S.user=JSON.parse(sessionStorage.getItem('rosablu-user')||'null')}catch(e){}
+const mediaSrc=id=>(db.media.find(m=>m.id===id)||{}).src||ph('Image','hotel');
+const ROLES={ADMIN:'Administrator',RECEPTION:'Reception',RESTAURANT:'Restaurant staff',CUSTOMER:'Customer'};
+const PERM={ADMIN:['dash','media','rooms','menu','orders','bookings','customers','reports','settings'],RECEPTION:['dash','media','rooms','bookings','customers'],RESTAURANT:['dash','menu','orders'],CUSTOMER:[]};
+const can=p=>S.user&&PERM[S.user.role].includes(p);
+function toast(m,k){const d=document.createElement('div');d.className='toast '+(k||'');d.textContent=m;$('#toasts').append(d);setTimeout(()=>d.remove(),3800)}
+function modal(html){const o=$('#overlay');o.innerHTML=`<div class="modalbg" role="dialog" aria-modal="true"><div class="modal">${html}</div></div>`;const f=o.querySelector('input,select,button');f&&f.focus()}
+function closeModal(){$('#overlay').innerHTML=''}
+function confirmBox(msg,fn,label){window._cf=fn;modal(`<h3>Please confirm</h3><p>${esc(msg)}</p><div class="row"><button class="btn danger" data-a="cfOk">${esc(label||'Confirm')}</button><button class="btn ghost" data-a="closeModal">Cancel</button></div>`)}
+function csv(name,rows){const t=rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('\n');const w=window.open&&0;modal(`<h3>${esc(name)}</h3><p class="small muted">Downloads are blocked inside this preview. Copy the CSV below and paste it into Excel or a .csv file.</p><textarea id="csvbox" rows="9" readonly>${esc(t)}</textarea><div class="row"><button class="btn" data-a="copyCsv">Copy CSV</button><button class="btn ghost" data-a="closeModal">Close</button></div>`)}
+/* ===== Business logic (mirrors what the server will enforce) ===== */
+const ACTIVE=['PENDING','CONFIRMED','CHECKED_IN'];
+function roomFree(roomId,a,b,ignoreRef){const rm=db.rooms.find(r=>r.id===roomId);if(!rm||!rm.active)return false;
+ if(rm.blocks.some(x=>a<x.to&&x.from<b))return false;
+ return !db.reservations.some(x=>x.roomId===roomId&&x.ref!==ignoreRef&&ACTIVE.includes(x.status)&&a<x.out&&x.in<b)}
+function priceOrder(cart,type,areaId){ /* prices always come from the menu, never from the cart */
+ let sub=0;const lines=[];for(const c of cart){const f=db.menu.find(m=>m.id===c.id);if(!f||!f.avail)return{error:(f?f.name:'An item')+' is no longer available'};
+  const u=f.offer||f.price;const ox=(c.opts||[]).map(n=>f.opts.find(o=>o.n===n)).filter(Boolean);const unit=u+ox.reduce((a,o)=>a+o.p,0);
+  lines.push({id:f.id,name:f.name,qty:c.qty,unit,opts:ox.map(o=>o.n),note:c.note||'',total:unit*c.qty});sub+=unit*c.qty}
+ const ar=db.areas.find(a=>a.id===areaId&&a.active);const fee=type==='DELIVERY'&&ar?ar.fee:0;
+ return{lines,sub,fee,total:sub+fee,area:ar,min:type==='DELIVERY'&&ar?ar.min:0}}
+function isOpen(){const n=new Date();const hm=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');return hm>=db.settings.openFrom&&hm<=db.settings.openTo}
+const RS=['PENDING','CONFIRMED','CHECKED_IN','CHECKED_OUT','CANCELLED','REJECTED'];
+const OS=['PENDING','CONFIRMED','PREPARING','READY_FOR_COLLECTION','OUT_FOR_DELIVERY','DELIVERED','CANCELLED'];
+const lbl=s=>String(s).replace(/_/g,' ').toLowerCase().replace(/^\w|\s\w/g,c=>c.toUpperCase());
+const tone=s=>['CONFIRMED','CHECKED_IN','DELIVERED','CHECKED_OUT'].includes(s)||/^PAID/.test(s)?'ok':['CANCELLED','REJECTED','FAILED'].includes(s)?'bad':s==='UNPAID'?'':'warn';
+const pill=s=>`<span class="pill ${tone(s)}">${esc(lbl(s))}</span>`;
+</script>
+<script>
+/* ===== Shell: header, footer, cookies, router ===== */
+const NAV=[['home','Home'],['about','About Us'],['rooms','Rooms & BnB'],['restaurant','Restaurant'],['menu','Food Menu'],['order','Order Food'],['reservations','Reservations'],['gallery','Gallery'],['contact','Contact Us']];
+function header(){const r=S.route;const n=S.cart.reduce((a,c)=>a+c.qty,0);
+ $('#hdr').innerHTML=`<div class="top"><div class="wrap"><a class="brand" href="#home" aria-label="${esc(db.settings.name)} home">${LOGO}<span><b>ROSA BLU</b><small>HOTEL</small></span></a>
+ <button class="burger" data-a="burger" aria-label="Menu" aria-expanded="false">Menu</button>
+ <nav class="main" id="nav">${NAV.map(([k,t])=>`<a href="#${k}" class="${r===k?'on':''}">${t}${k==='order'&&n?`<span class="cartpill">${n}</span>`:''}</a>`).join('')}
+ <a href="#account" class="${r==='account'||r==='admin'?'on':''}">${S.user?'My Account':'Login'}</a></nav></div></div>
+ <div class="demobar">Demonstration prototype. All rooms, menu items, orders and payments are sample data. No real transactions occur.</div>`}
+function footer(){const s=db.settings;$('#ftr').innerHTML=`<footer><div class="wrap grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"><div class="stack"><div class="brand" style="color:#fff">${LOGO}<span><b>ROSA BLU</b><small>HOTEL</small></span></div><p class="small">Rooms, BnB stays and a Kenyan-inspired kitchen.</p></div>
+ <div class="stack small"><b>Contact</b><span>${esc(s.phone)}</span><span>${esc(s.email)}</span><span>${esc(s.location)}</span></div>
+ <div class="stack small"><b>Explore</b><a href="#rooms">Book a room</a><a href="#menu">Food menu</a><a href="#order">Order food</a><a href="#reservations">Track a booking</a></div>
+ <div class="stack small"><b>Privacy</b><a href="#" data-a="cookies">Cookie settings</a><span>We store only the details needed to serve your booking or order.</span></div></div></footer>`}
+function cookieBar(){if(S.consent)return'';return`<div class="cookie" role="dialog" aria-label="Cookie consent"><b>Cookies</b><p class="small muted">We use essential storage to run bookings and your cart. Analytics and marketing cookies stay off unless you allow them.</p><div class="row"><button class="btn sm" data-a="ckAll">Accept all</button><button class="btn sm ghost" data-a="ckNone">Reject non-essential</button><button class="btn sm ghost" data-a="ckCustom">Customise</button></div></div>`}
+function setConsent(c){S.consent=c;try{localStorage.setItem('rosablu-consent',JSON.stringify(c))}catch(e){}closeModal();render();toast('Cookie preferences saved')}
+const PAGES={};let timer=null;
+function render(){clearInterval(timer);const r=(location.hash||'#home').slice(1).split('-')[0]||'home';S.route=PAGES[r]?r:'home';
+ if(S.route!=='order')S.placed=null;closeModal();header();footer();const p=PAGES[S.route];$('#app').innerHTML=p.html()+cookieBar();p.after&&p.after();window.scrollTo(0,0)}
+function go(h){location.hash=h}
+addEventListener('hashchange',render);
+
+/* ===== Home with cinematic slideshow ===== */
+function slidesList(){return db.media.filter(m=>m.active&&m.slide)}
+function heroHtml(){const L=slidesList();
+ const sl=L.map((m,i)=>m.type==='video'?`<div class="slide ${i?'':'on'}" data-i="${i}"><video src="${esc(m.src)}" muted loop playsinline preload="metadata"></video></div>`:`<div class="slide ${i?'':'on'}" data-i="${i}"><img class="kb" src="${esc(m.src)}" alt="${esc(m.title)}"></div>`).join('');
+ return`<section class="hero" aria-roledescription="carousel" aria-label="Hotel photographs">${sl||`<div class="slide on"><img src="${ph('Rosa Blu Hotel','hotel',212)}" alt=""></div>`}
+ <div class="wrap" style="width:100%"><div class="in"><span class="eyebrow" style="color:var(--goldl)">Welcome to</span><h1>Rosa Blu Hotel</h1><p>Quiet rooms, honest hospitality and a kitchen that serves the flavours of Kenya. Stay with us, dine with us, or have dinner brought to you.</p>
+ <div class="row"><a class="btn gold" href="#rooms">Book a Room</a><a class="btn onhero" href="#menu">Explore Our Menu</a><a class="btn onhero" href="#order">Order Food</a></div></div></div>
+ <div class="hctl"><div class="dots">${L.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div><button data-a="slPrev" aria-label="Previous slide">&#8249;</button><button data-a="slPlay" id="slPlay" aria-label="Pause slideshow">&#10074;&#10074;</button><button data-a="slNext" aria-label="Next slide">&#8250;</button></div></section>`}
+let slIdx=0,slPlaying=true;
+function slShow(i){const s=$$('.slide');if(!s.length)return;slIdx=(i+s.length)%s.length;s.forEach((e,k)=>{e.classList.toggle('on',k===slIdx);const v=e.querySelector('video');if(v){k===slIdx?v.play().catch(()=>{}):v.pause()}});$$('.dots i').forEach((e,k)=>e.classList.toggle('on',k===slIdx))}
+function slStart(){clearInterval(timer);if(slPlaying&&!matchMedia('(prefers-reduced-motion:reduce)').matches)timer=setInterval(()=>slShow(slIdx+1),6000)}
+function slInit(){slIdx=0;slPlaying=true;$$('.slide video').forEach(v=>v.addEventListener('error',()=>{/* fallback image if video fails */const i=v.closest('.slide');i.innerHTML=`<img src="${ph('Rosa Blu Hotel','hotel',212)}" alt="">`}));const v=$('.slide.on video');v&&v.play().catch(()=>{});slStart()}
+PAGES.home={html(){const rooms=db.rooms.filter(r=>r.active).slice(0,3);const offers=db.menu.filter(m=>m.offer&&m.avail);
+ return heroHtml()+`<section class="band"><div class="wrap grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+ <div class="stack"><span class="eyebrow">Stay</span><h2>Rooms and BnB</h2><p class="lead">From a quiet studio to a full suite. Check dates, see the price and reserve in a few minutes.</p><a class="btn" href="#rooms" style="align-self:flex-start">See rooms</a></div>
+ <div class="stack"><span class="eyebrow">Dine</span><h2>The Restaurant</h2><p class="lead">Breakfast to late dinner, with traditional Kenyan dishes cooked fresh every day.</p><a class="btn" href="#restaurant" style="align-self:flex-start">Visit the restaurant</a></div>
+ <div class="stack"><span class="eyebrow">Delivered</span><h2>Order Food</h2><p class="lead">Choose delivery to your area or collect from reception. Track your order live.</p><a class="btn" href="#order" style="align-self:flex-start">Start an order</a></div></div></section>
+ <section class="band alt"><div class="wrap stack"><div class="stack"><span class="eyebrow">Featured rooms</span><h2>Where you will stay</h2></div><div class="grid">${rooms.map(roomCard).join('')}</div></div></section>
+ ${offers.length?`<section class="band"><div class="wrap stack"><span class="eyebrow">Special offer</span><h2>Today at the restaurant</h2><div class="grid">${offers.map(foodCard).join('')}</div></div></section>`:''}`},after:slInit};
+function roomCard(r){const lo=!isNaN(1);return`<article class="card"><div class="ph"><img src="${esc(mediaSrc(r.img))}" alt="${esc(r.name)}" loading="lazy">${r.sample?'<span class="sample">Sample</span>':''}</div><div class="bd"><h3>${esc(r.name)}</h3><p class="small muted">${esc(r.desc)}</p><div class="row"><span class="tag">${r.adults} adults</span><span class="tag">${r.children} children</span></div><div class="row" style="justify-content:space-between;margin-top:auto"><span class="price">${kes(r.price)}<small class="muted" style="font-size:.7rem;font-family:var(--sans)"> / night</small></span><a class="btn sm" href="#rooms-${r.id}">Check dates</a></div></div></article>`}
+function foodCard(f){const p=f.offer||f.price;return`<article class="card"><div class="ph"><img src="${esc(mediaSrc(f.img))}" alt="${esc(f.name)}" loading="lazy">${f.offer?'<span class="sample" style="background:var(--goldl);color:#0B1F3A">Offer</span>':''}</div><div class="bd"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><h3 style="font-size:1.25rem">${esc(f.name)}</h3><span class="price" style="font-size:1.2rem;white-space:nowrap">${kes(p)}</span></div>${f.offer?`<span class="small muted"><s>${kes(f.price)}</s></span>`:''}<p class="small muted">${esc(f.desc)}</p><div class="row" style="margin-top:auto"><span class="tag">${esc(f.cat)}</span>${f.avail?`<button class="btn sm" data-a="addItem" data-v="${f.id}" style="margin-left:auto">Add</button>`:'<span class="pill bad" style="margin-left:auto">Unavailable</span>'}</div></div></article>`}
+
+/* ===== About, Restaurant, Gallery, Contact ===== */
+PAGES.about={html(){return`<section class="band"><div class="wrap split"><div class="stack"><span class="eyebrow">About us</span><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">A rose, a roof and a warm welcome</h1><p class="lead">Rosa Blu Hotel is built around simple things done well: clean rooms, attentive reception and food that tastes like home.</p><p class="lead">[Replace this text with the hotel's real story, founding year and team in the final version.]</p><div class="row"><a class="btn" href="#rooms">Book a Room</a><a class="btn ghost" href="#contact">Contact us</a></div></div><div class="card"><div class="ph"><img src="${esc(mediaSrc('m1'))}" alt="Hotel"></div></div></div></section>
+ <section class="band alt"><div class="wrap grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${[['Rooms and BnB','Five room types from compact studios to a family suite.'],['Restaurant','Ten menu categories, from breakfast to fresh juices.'],['Delivery','Configurable delivery areas, fees and opening hours.'],['Events','Meetings, weddings and celebrations. [Add details]']].map(([a,b])=>`<div class="panel stack"><h3>${a}</h3><p class="small muted">${b}</p></div>`).join('')}</div></section>`}};
+PAGES.restaurant={html(){const s=db.settings;const o=db.menu.filter(m=>m.offer&&m.avail);return`<section class="band"><div class="wrap split"><div class="stack"><span class="eyebrow">Restaurant</span><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Kenyan flavours, cooked fresh</h1><p class="lead">Slow-cooked traditional dishes, charcoal grill, light breakfasts and fresh juices. Dine in, collect, or have it delivered.</p><div class="row"><span class="pill ${isOpen()?'ok':'warn'}">${isOpen()?'Open now':'Closed now'}</span><span class="small muted">${esc(s.hours)}</span></div><div class="row"><a class="btn" href="#menu">Explore Our Menu</a><a class="btn gold" href="#order">Order Food</a></div></div><div class="card"><div class="ph"><img src="${esc(mediaSrc('m3'))}" alt="Restaurant"></div></div></div></section>
+ ${o.length?`<section class="band alt"><div class="wrap stack"><h2>Special offers</h2><div class="grid">${o.map(foodCard).join('')}</div></div></section>`:''}`}};
+PAGES.gallery={html(){const L=db.media.filter(m=>m.active&&m.type==='image'&&m.cat!=='FOOD'&&m.cat!=='ROOM'||m.active&&m.type==='video');return`<section class="band"><div class="wrap stack"><span class="eyebrow">Gallery</span><h2>Around Rosa Blu</h2><p class="lead">Placeholder artwork until the hotel's own photographs are uploaded in Admin > Media.</p><div class="mgrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">${L.map(m=>`<figure style="margin:0" class="card"><div class="ph">${m.type==='video'?`<video src="${esc(m.src)}" controls preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>`:`<img src="${esc(m.src)}" alt="${esc(m.title)}" loading="lazy">`}</div><figcaption class="bd small">${esc(m.title)}</figcaption></figure>`).join('')||'<div class="empty">No gallery media yet.</div>'}</div></div></section>`}};
+PAGES.contact={html(){const s=db.settings;return`<section class="band"><div class="wrap split"><div class="stack"><span class="eyebrow">Contact us</span><h2>We would like to hear from you</h2><div class="panel stack small"><div><b>Phone</b><br>${esc(s.phone)}</div><div><b>WhatsApp</b><br>${esc(s.whatsapp)}</div><div><b>Email</b><br>${esc(s.email)}</div><div><b>Location</b><br>${esc(s.location)}</div><div><b>Hours</b><br>${esc(s.hours)}</div></div><div class="empty small">Map placeholder. Embed the hotel's map in Admin > Settings once the real address is confirmed.</div></div>
+ <form class="panel stack" data-form="contact"><h3>Send a message</h3><label>Name<input id="cn" required></label><label>Phone or email<input id="cc" required></label><label>Message<textarea id="cm" rows="5" required></textarea></label><button class="btn">Send message</button><p class="small muted">Messages are stored for staff in this demo.</p></form></div></section>`}};
+</script>
+<script>
+/* ===== Rooms & booking ===== */
+S.q={in:addDays(today(),1),out:addDays(today(),3),ad:2,ch:0};
+function roomsList(){const q=S.q;const ok=q.in>=today()&&q.out>q.in;const n=ok?nights(q.in,q.out):0;
+ if(!ok)return'<div class="empty">Choose a check-in date today or later, and a check-out date after it.</div>';
+ const L=db.rooms.filter(r=>r.active);if(!L.length)return'<div class="empty">No rooms are listed right now.</div>';
+ return`<p class="small muted">${n} night${n>1?'s':''}, ${fdate(q.in)} to ${fdate(q.out)}</p><div class="grid">${L.map(r=>{const fit=q.ad<=r.adults&&q.ch<=r.children;const free=roomFree(r.id,q.in,q.out);
+ return`<article class="card"><div class="ph"><img src="${esc(mediaSrc(r.img))}" alt="${esc(r.name)}" loading="lazy">${r.sample?'<span class="sample">Sample room</span>':''}</div><div class="bd"><h3>${esc(r.name)}</h3><p class="small muted">${esc(r.desc)}</p><div class="chips">${r.amen.map(a=>`<span class="tag">${esc(a)}</span>`).join('')}</div><p class="small muted">Sleeps up to ${r.adults} adults and ${r.children} children</p>
+ <div class="line"><span class="price">${kes(r.price)}<small class="muted" style="font-size:.7rem;font-family:var(--sans)"> / night</small></span><b>${kes(r.price*n)}</b></div><div class="small muted" style="text-align:right">${n} night${n>1?'s':''} estimated total</div>
+ ${!fit?'<span class="pill warn">Too small for this party</span>':free?`<button class="btn" data-a="reserve" data-v="${r.id}">Reserve</button>`:'<span class="pill bad">Not available for these dates</span>'}</div></article>`}).join('')}</div>`}
+PAGES.rooms={html(){const h=(location.hash||'').split('-')[1];window._focusRoom=h;return`<section class="band"><div class="wrap stack"><span class="eyebrow">Rooms & BnB</span><h2>Find your room</h2>
+ <form class="panel fgrid" data-form="none"><label>Check-in<input type="date" id="qin" min="${today()}" value="${S.q.in}"></label><label>Check-out<input type="date" id="qout" min="${addDays(S.q.in,1)}" value="${S.q.out}"></label><label>Adults<input type="number" id="qad" min="1" max="6" value="${S.q.ad}"></label><label>Children<input type="number" id="qch" min="0" max="5" value="${S.q.ch}"></label></form>
+ <div id="roomlist">${roomsList()}</div></div></section>`},after(){if(window._focusRoom){const r=db.rooms.find(x=>x.id===window._focusRoom);r&&roomFree(r.id,S.q.in,S.q.out)&&A.reserve(r.id)}}};
+function payChoices(kind){const s=db.settings;const own=kind==='room'?s.payAtHotel:s.payOnCollection;
+ return`<fieldset style="border:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:8px"><legend class="small muted">Payment</legend>
+ ${own?`<label style="flex-direction:row;align-items:center;gap:8px;text-transform:none;letter-spacing:0"><input type="radio" name="pm" value="${kind==='room'?'Pay at hotel':'Pay on collection'}" checked style="width:auto">${kind==='room'?'Pay at the hotel':'Pay on collection / delivery'}</label>`:''}
+ <label style="flex-direction:row;align-items:center;gap:8px;text-transform:none;letter-spacing:0"><input type="radio" name="pm" value="M-Pesa" ${own?'':'checked'} style="width:auto">M-Pesa <span class="pill warn">DEMO</span></label>
+ <label style="flex-direction:row;align-items:center;gap:8px;text-transform:none;letter-spacing:0"><input type="radio" name="pm" value="Card" style="width:auto">Card <span class="pill warn">DEMO</span></label>
+ <p class="small muted">Demo payments are simulated and marked DEMO. Real M-Pesa and card payments need provider credentials and server verification.</p></fieldset>`}
+function payRecord(m){const demo=m==='M-Pesa'||m==='Card';return demo?{status:'PAID (DEMO)',method:m,ref:'DEMO-'+uid().toUpperCase(),demo:true}:{status:'UNPAID',method:m,ref:'',demo:false}}
+function rememberCustomer(name,phone,email){let c=db.customers.find(x=>x.phone===phone||(email&&x.email===email));if(!c)db.customers.push({name,phone,email,created:Date.now()});else Object.assign(c,{name,email:email||c.email})}
+/* ===== Menu ===== */
+S.mq={cat:'All',s:''};
+function menuList(){const q=S.mq;const L=db.menu.filter(m=>(q.cat==='All'||m.cat===q.cat)&&(!q.s||(m.name+m.desc).toLowerCase().includes(q.s.toLowerCase())));
+ return L.length?`<div class="grid">${L.map(foodCard).join('')}</div>`:'<div class="empty">No dishes match your search. Try another category or clear the search box.</div>'}
+PAGES.menu={html(){return`<section class="band"><div class="wrap stack"><span class="eyebrow">Food menu</span><h2>Our menu</h2><div class="row"><span class="pill ${isOpen()?'ok':'warn'}">${isOpen()?'Kitchen open':'Kitchen closed now'}</span><span class="small muted">Prices in Kenyan shillings (sample prices)</span></div>
+ <div class="fgrid"><label>Search<input id="ms" type="search" placeholder="Search dishes" value="${esc(S.mq.s)}"></label></div>
+ <div class="chips" id="mcats">${['All',...db.cats].map(c=>`<button class="chip ${S.mq.cat===c?'on':''}" data-a="mcat" data-v="${esc(c)}">${esc(c)}</button>`).join('')}</div><div id="menulist">${menuList()}</div></div></section>`}};
+/* ===== Cart & ordering ===== */
+function cartAdd(it){const k=it.id+'|'+(it.opts||[]).join(',')+'|'+(it.note||'');const x=S.cart.find(c=>c.k===k);x?x.qty+=it.qty:S.cart.push({...it,k});header();toast(db.menu.find(m=>m.id===it.id).name+' added to your order')}
+S.o={type:'DELIVERY',area:'',time:'',name:'',phone:'',addr:'',land:'',instr:''};
+PAGES.order={html(){if(S.placed)return orderDone();const o=S.o;const areas=db.areas.filter(a=>a.active);if(!areas.some(a=>a.id===o.area))o.area=areas[0]?areas[0].id:'';
+ if(!db.settings.delivery)o.type='COLLECTION';const p=priceOrder(S.cart,o.type,o.area);
+ if(!S.cart.length)return`<section class="band"><div class="wrap stack"><span class="eyebrow">Order food</span><h2>Your order is empty</h2><div class="empty">Pick something from the menu and it will appear here.<br><br><a class="btn" href="#menu">Explore Our Menu</a></div></div></section>`;
+ return`<section class="band"><div class="wrap stack"><span class="eyebrow">Order food</span><h2>Your order</h2><div class="split"><form class="stack" data-form="order">
+ <div class="panel stack"><h3>Items</h3>${S.cart.map((c,i)=>{const f=db.menu.find(m=>m.id===c.id);return`<div class="line" style="align-items:center"><div style="min-width:0"><b>${esc(f.name)}</b><div class="small muted">${esc((c.opts||[]).join(', '))}${c.note?' · '+esc(c.note):''}</div></div><div class="row" style="flex-wrap:nowrap"><button type="button" class="btn sm ghost" data-a="qty" data-v="${i}:-1" aria-label="Fewer">&minus;</button><b>${c.qty}</b><button type="button" class="btn sm ghost" data-a="qty" data-v="${i}:1" aria-label="More">+</button><button type="button" class="btn sm ghost" data-a="rm" data-v="${i}">Remove</button></div></div>`}).join('')}</div>
+ <div class="panel stack"><h3>Delivery or collection</h3><div class="chips">${db.settings.delivery?`<button type="button" class="chip ${o.type==='DELIVERY'?'on':''}" data-a="otype" data-v="DELIVERY">Delivery</button>`:''}<button type="button" class="chip ${o.type==='COLLECTION'?'on':''}" data-a="otype" data-v="COLLECTION">Collection</button></div>
+ <div class="fgrid"><label>Name<input id="on" required value="${esc(o.name)}"></label><label>Phone<input id="op" required value="${esc(o.phone)}" inputmode="tel"></label></div>
+ ${o.type==='DELIVERY'?`<div class="fgrid"><label>Delivery area<select id="oa">${areas.map(a=>`<option value="${a.id}" ${a.id===o.area?'selected':''}>${esc(a.name)} (${kes(a.fee)})</option>`).join('')}</select></label><label>Landmark<input id="ol" value="${esc(o.land)}"></label></div><label>Detailed address<input id="oad" required value="${esc(o.addr)}"></label><label>Delivery instructions (optional)<input id="oi" value="${esc(o.instr)}"></label>`:'<p class="small muted">Collect from reception. We will show your order reference when it is placed.</p>'}
+ <label>Preferred time<select id="ot"><option value="">As soon as possible</option>${slots().map(t=>`<option ${o.time===t?'selected':''}>${t}</option>`).join('')}</select></label></div>
+ <div class="panel stack">${payChoices('food')}</div></form>
+ <aside class="panel stack" style="position:sticky;top:90px"><h3>Summary</h3>${p.error?`<p class="err">${esc(p.error)}</p>`:`<div class="line"><span>Subtotal</span><span>${kes(p.sub)}</span></div><div class="line"><span>${o.type==='DELIVERY'?'Delivery fee':'Collection'}</span><span>${kes(p.fee)}</span></div><div class="line tot"><span>Total</span><span>${kes(p.total)}</span></div>${p.min&&p.sub<p.min?`<p class="err small">Minimum order for this area is ${kes(p.min)}.</p>`:''}`}
+ ${isOpen()?'':`<p class="err small">The kitchen is closed (${esc(db.settings.openFrom)} to ${esc(db.settings.openTo)}). You may still schedule an order.</p>`}
+ <p class="small muted">Prices are recalculated from the menu when you place the order.</p><button class="btn gold" data-a="placeOrder" ${p.error?'disabled':''}>Place order</button></aside></div></div></section>`}};
+function slots(){const out=[];let [h,m]=db.settings.openFrom.split(':').map(Number);const [eh]=db.settings.openTo.split(':').map(Number);for(;h<eh;h++){out.push(String(h).padStart(2,'0')+':00');out.push(String(h).padStart(2,'0')+':30')}return out}
+function orderDone(){const o=S.placed;return`<section class="band"><div class="wrap stack" style="max-width:640px"><span class="eyebrow">Order received</span><h2>Thank you, ${esc(o.name)}</h2><div class="panel stack"><p>Your order reference</p><h1 style="font-size:2.4rem;color:var(--gold)">${o.ref}</h1><p class="small muted">Keep this reference to track your order. ${o.type==='DELIVERY'?'Estimated delivery in about '+(db.areas.find(a=>a.id===o.area)||{mins:45}).mins+' minutes.':'We will mark it ready for collection.'}</p><div class="line tot"><span>Total</span><span>${kes(o.total)}</span></div><div class="row">${pill(o.status)}${pill(o.pay.status)}</div><div class="row"><a class="btn" href="#reservations" data-a="trackThis" data-v="${o.ref}">Track order</a><a class="btn ghost" href="#menu">Order more</a></div></div></div></section>`}
+/* ===== Tracking ===== */
+S.look={kind:'room',ref:'',contact:'',found:null};
+function statusFlow(o){return o.type==='DELIVERY'?['PENDING','CONFIRMED','PREPARING','OUT_FOR_DELIVERY','DELIVERED']:['PENDING','CONFIRMED','PREPARING','READY_FOR_COLLECTION','DELIVERED']}
+function trackView(){const f=S.look.found;if(!f)return S.look.err?`<p class="err">${esc(S.look.err)}</p>`:'';
+ if(f.kind==='room'){const r=f.rec,rm=db.rooms.find(x=>x.id===r.roomId)||{name:'Room'};return`<div class="panel stack"><div class="line"><h3>${r.ref}</h3>${pill(r.status)}</div><div class="line"><span>Room</span><b>${esc(rm.name)}</b></div><div class="line"><span>Stay</span><b>${fdate(r.in)} to ${fdate(r.out)} (${r.nights} night${r.nights>1?'s':''})</b></div><div class="line"><span>Guests</span><span>${r.adults} adults, ${r.children} children</span></div><div class="line"><span>Total</span><b>${kes(r.total)}</b></div><div class="line"><span>Payment</span><span>${pill(r.pay.status)} <span class="small muted">${esc(r.pay.method)} ${esc(r.pay.ref)}</span></span></div>${['PENDING','CONFIRMED'].includes(r.status)?`<button class="btn danger sm" style="align-self:flex-start" data-a="cancelRes" data-v="${r.ref}">Cancel booking</button><p class="small muted">${esc(db.settings.cancelNote)}</p>`:''}</div>`}
+ const o=f.rec,fl=statusFlow(o),ix=fl.indexOf(o.status);return`<div class="panel stack"><div class="line"><h3>${o.ref}</h3>${pill(o.status)}</div>${o.status==='CANCELLED'?'<p class="err">This order was cancelled.</p>':`<ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px">${fl.map((s,i)=>`<li style="display:flex;gap:10px;align-items:center;color:${i<=ix?'var(--fg)':'var(--mute)'}"><span style="width:14px;height:14px;border-radius:50%;background:${i<=ix?'var(--goldl)':'var(--line)'}"></span>${lbl(s)}</li>`).join('')}</ol>`}
+ ${o.items.map(i=>`<div class="line small"><span>${i.qty} x ${esc(i.name)}</span><span>${kes(i.total)}</span></div>`).join('')}<div class="line tot"><span>Total</span><span>${kes(o.total)}</span></div><div class="line"><span>Payment</span><span>${pill(o.pay.status)} <span class="small muted">${esc(o.pay.method)}</span></span></div>
+ ${o.status!=='DELIVERED'&&o.status!=='CANCELLED'?`<button class="btn ghost sm" style="align-self:flex-start" data-a="simNext" data-v="${o.ref}">Simulate next status (demo)</button><p class="small muted">Real status updates come from kitchen staff. This button only simulates one for the presentation.</p>`:''}</div>`}
+PAGES.reservations={html(){const L=S.look,u=S.user;const mine=u&&u.role==='CUSTOMER'?{r:db.reservations.filter(r=>r.email===u.email||r.phone===u.phone),o:db.orders.filter(o=>o.phone===u.phone)}:null;
+ return`<section class="band"><div class="wrap stack" style="max-width:760px"><span class="eyebrow">Reservations</span><h2>Track a booking or food order</h2><form class="panel stack" data-form="look"><div class="chips"><button type="button" class="chip ${L.kind==='room'?'on':''}" data-a="lookKind" data-v="room">Room booking</button><button type="button" class="chip ${L.kind==='food'?'on':''}" data-a="lookKind" data-v="food">Food order</button></div><div class="fgrid"><label>Reference<input id="lr" required placeholder="${L.kind==='room'?'RB-DEMO01':'FO-DEMO01'}" value="${esc(L.ref)}"></label><label>Phone or email used<input id="lc" required value="${esc(L.contact)}" placeholder="${L.kind==='room'?'0700 000 001':'0700 000 011'}"></label></div><button class="btn" style="align-self:flex-start">Find</button><p class="small muted">Sample references to try: RB-DEMO01 with 0700 000 001, FO-DEMO01 with 0700 000 011.</p></form><div id="trk">${trackView()}</div>
+ ${mine?`<h3>Your history</h3>${mine.r.length+mine.o.length?`<div class="tw"><table><tr><th>Ref</th><th>Type</th><th>Status</th><th>Total</th></tr>${mine.r.map(r=>`<tr><td>${r.ref}</td><td>Room</td><td>${pill(r.status)}</td><td>${kes(r.total)}</td></tr>`).join('')}${mine.o.map(o=>`<tr><td>${o.ref}</td><td>Food</td><td>${pill(o.status)}</td><td>${kes(o.total)}</td></tr>`).join('')}</table></div>`:'<div class="empty">No bookings or orders on this account yet.</div>'}`:''}</div></section>`}};
+/* ===== Account / demo sign-in ===== */
+PAGES.account={html(){const u=S.user;if(u)return`<section class="band"><div class="wrap stack" style="max-width:640px"><span class="eyebrow">My account</span><h2>Hello, ${esc(u.name)}</h2><div class="panel stack"><div class="line"><span>Role</span><b>${ROLES[u.role]}</b></div>${u.email?`<div class="line"><span>Email</span><span>${esc(u.email)}</span></div>`:''}<div class="row">${u.role!=='CUSTOMER'?'<a class="btn gold" href="#admin">Open dashboard</a>':'<a class="btn" href="#reservations">My bookings and orders</a>'}<button class="btn ghost" data-a="logout">Sign out</button></div></div></div></section>`;
+ return`<section class="band"><div class="wrap split"><div class="stack"><span class="eyebrow">Login</span><h2>Staff demo access</h2><p class="lead">This prototype has no real passwords. Pick a role to see what each team member can access. In the production build staff sign in with hashed passwords and server-side sessions.</p><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">${['ADMIN','RECEPTION','RESTAURANT'].map(r=>`<button class="panel stack" style="text-align:left;cursor:pointer" data-a="demoLogin" data-v="${r}"><b>${ROLES[r]}</b><span class="small muted">${r==='ADMIN'?'Everything':r==='RECEPTION'?'Rooms, bookings, media, customers':'Menu and food orders only'}</span></button>`).join('')}</div></div>
+ <form class="panel stack" data-form="custLogin"><h3>Customer sign in</h3><label>Name<input id="cln" required></label><label>Email<input id="cle" type="email" required></label><label>Phone<input id="clp" required inputmode="tel"></label><button class="btn">Continue</button><p class="small muted">Guests can book and order without an account.</p></form></div></section>`}};
+</script>
+<script>
+/* ===== Admin dashboard ===== */
+S.tab='dash';S.af={};
+const TABS=[['dash','Overview'],['media','Media'],['rooms','Rooms'],['bookings','Bookings'],['menu','Menu'],['orders','Orders'],['customers','Customers'],['reports','Reports'],['settings','Settings']];
+function revenue(){const real=[...db.reservations,...db.orders].filter(x=>x.pay.status==='PAID'&&!x.pay.demo).reduce((a,x)=>a+x.total,0);const demo=[...db.reservations,...db.orders].filter(x=>x.pay.demo&&x.pay.status.startsWith('PAID')).reduce((a,x)=>a+x.total,0);return{real,demo}}
+function aDash(){const t=today();const R=db.reservations,O=db.orders;const occ=R.filter(r=>r.status==='CHECKED_IN'||(r.status==='CONFIRMED'&&r.in<=t&&r.out>t)).length;const act=db.rooms.filter(r=>r.active).length;const rv=revenue();
+ const arr=R.filter(r=>r.in===t&&['PENDING','CONFIRMED'].includes(r.status)),dep=R.filter(r=>r.out>=t&&r.out<=addDays(t,3)&&['CONFIRMED','CHECKED_IN'].includes(r.status));
+ const to=O.filter(o=>iso(o.created)===t).length,po=O.filter(o=>o.status==='PENDING').length;
+ const k=(a,b,c)=>`<div class="kpi"><small>${a}</small><b>${b}</b>${c?`<span class="small muted">${c}</span>`:''}</div>`;
+ const days=[...Array(7)].map((_,i)=>addDays(t,i-6)),sales=days.map(d=>O.filter(o=>iso(o.created)===d&&o.status!=='CANCELLED').reduce((a,o)=>a+o.total,0)+R.filter(r=>iso(r.created)===d&&r.status!=='CANCELLED').reduce((a,r)=>a+r.total,0));
+ const mx=Math.max(...sales,1);
+ return`<h2>Overview</h2><div class="kpis">${k('Total bookings',R.length,'sample data')}${k("Today's arrivals",arr.length)}${k('Upcoming departures',dep.length,'next 3 days')}${k('Occupied rooms',occ+' / '+act,(act-occ)+' available')}${k("Today's food orders",to)}${k('Pending food orders',po)}${k('Revenue (verified)',kes(rv.real),'real payments only')}${k('Demo revenue',kes(rv.demo),'simulated, not real')}</div>
+ ${can('bookings')||can('orders')?`<div class="panel stack"><b>Activity, last 7 days (KES, bookings plus orders, sample)</b><svg viewBox="0 0 560 150" style="width:100%;max-width:100%" role="img" aria-label="Seven day activity chart">${sales.map((v,i)=>{const h=v/mx*100;return`<rect x="${20+i*76}" y="${115-h}" width="48" height="${h}" fill="var(--gold)" opacity=".85"/><text x="${44+i*76}" y="134" text-anchor="middle" font-size="11" fill="var(--mute)">${days[i].slice(5)}</text>${v?`<text x="${44+i*76}" y="${108-h}" text-anchor="middle" font-size="10" fill="var(--fg)">${Math.round(v/1000)}k</text>`:''}`}).join('')}<line x1="10" x2="550" y1="115" y2="115" stroke="var(--line)"/></svg></div>`:''}
+ <div class="panel stack"><b>Recent activity</b>${db.audit.length?`<div class="tw"><table>${db.audit.slice(0,8).map(a=>`<tr><td class="small muted" style="white-space:nowrap">${ftime(a.t)}</td><td>${esc(a.a)}</td><td class="small muted">${esc(a.by)}</td></tr>`).join('')}</table></div>`:'<p class="small muted">Actions taken by staff will appear here.</p>'}</div>`}
+function aMedia(){return`<div class="row" style="justify-content:space-between"><h2>Media library</h2><label class="btn" style="cursor:pointer">Upload photo or video<input type="file" id="mup" accept="image/jpeg,image/png,image/webp,video/mp4" hidden></label></div><p class="small muted">Allowed: JPG, PNG, WebP up to 8 MB and MP4 up to 25 MB in this preview. Slideshow order follows the list below.</p>
+ <div class="mgrid">${db.media.map((m,i)=>`<div class="card" style="opacity:${m.active?1:.55}"><div class="ph">${m.type==='video'?`<video src="${esc(m.src)}" muted preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>`:`<img src="${esc(m.src)}" alt="${esc(m.title)}" loading="lazy">`}${m.placeholder?'<span class="sample">Placeholder</span>':''}</div><div class="bd"><b class="small">${esc(m.title)}</b><span class="small muted">${m.type==='video'?'Video':'Photo'} · ${lbl(m.cat)}</span><div class="row"><label style="flex-direction:row;align-items:center;gap:6px;text-transform:none;letter-spacing:0"><input type="checkbox" style="width:auto" data-a="mSlide" data-v="${m.id}" ${m.slide?'checked':''}>Slideshow</label><label style="flex-direction:row;align-items:center;gap:6px;text-transform:none;letter-spacing:0"><input type="checkbox" style="width:auto" data-a="mActive" data-v="${m.id}" ${m.active?'checked':''}>Active</label></div><div class="row"><button class="btn sm ghost" data-a="mMove" data-v="${i}:-1" aria-label="Move earlier">&#8592;</button><button class="btn sm ghost" data-a="mMove" data-v="${i}:1" aria-label="Move later">&#8594;</button><button class="btn sm ghost" data-a="mDel" data-v="${m.id}" style="margin-left:auto">Delete</button></div></div></div>`).join('')}</div>`}
+function aRooms(){return`<div class="row" style="justify-content:space-between"><h2>Rooms</h2><button class="btn" data-a="roomForm" data-v="">Add room</button></div><div class="tw panel"><table><tr><th>Room</th><th>Price</th><th>Sleeps</th><th>Status</th><th></th></tr>${db.rooms.map(r=>`<tr><td><div class="row" style="flex-wrap:nowrap"><img class="thumb" src="${esc(mediaSrc(r.img))}" alt=""><b>${esc(r.name)}</b></div></td><td>${kes(r.price)}</td><td>${r.adults}+${r.children}</td><td>${r.active?pill('CONFIRMED').replace('Confirmed','Listed'):'<span class="pill">Hidden</span>'}${r.blocks.length?'<br><span class="small muted">'+r.blocks.length+' block(s)</span>':''}</td><td><div class="row"><button class="btn sm ghost" data-a="roomForm" data-v="${r.id}">Edit</button><button class="btn sm ghost" data-a="roomBlock" data-v="${r.id}">Block dates</button><button class="btn sm ghost" data-a="roomDel" data-v="${r.id}">Remove</button></div></td></tr>`).join('')}</table></div>`}
+function aBookings(){const f=S.af.b||'',st=S.af.bs||'';const L=db.reservations.filter(r=>(!st||r.status===st)&&(!f||(r.ref+r.name+r.phone+(db.rooms.find(x=>x.id===r.roomId)||{}).name).toLowerCase().includes(f.toLowerCase()))).sort((a,b)=>a.in<b.in?-1:1);
+ return`<h2>Bookings</h2><div class="fgrid"><label>Search<input id="bf" value="${esc(f)}" placeholder="Name, reference, room"></label><label>Status<select id="bs"><option value="">All</option>${RS.map(s=>`<option value="${s}" ${st===s?'selected':''}>${lbl(s)}</option>`).join('')}</select></label></div>
+ <div class="tw panel"><table><tr><th>Ref</th><th>Guest</th><th>Room</th><th>Stay</th><th>Total</th><th>Status</th><th>Payment</th><th></th></tr>${L.map(r=>`<tr><td>${r.ref}${r.sample?'<br><span class="small muted">sample</span>':''}</td><td>${esc(r.name)}<br><span class="small muted">${esc(r.phone)}</span></td><td>${esc((db.rooms.find(x=>x.id===r.roomId)||{}).name)}</td><td style="white-space:nowrap">${fdate(r.in)}<br>${fdate(r.out)}</td><td>${kes(r.total)}</td><td>${pill(r.status)}</td><td>${pill(r.pay.status)}</td><td><select data-a="resStatus" data-v="${r.ref}" aria-label="Update status">${RS.map(s=>`<option value="${s}" ${s===r.status?'selected':''}>${lbl(s)}</option>`).join('')}</select></td></tr>`).join('')||'<tr><td colspan="8"><div class="empty">No bookings match.</div></td></tr>'}</table></div>`}
+function aMenu(){return`<div class="row" style="justify-content:space-between"><h2>Restaurant menu</h2><div class="row"><button class="btn ghost" data-a="catForm">Categories</button><button class="btn" data-a="itemForm" data-v="">Add item</button></div></div><div class="tw panel"><table><tr><th>Item</th><th>Category</th><th>Price</th><th>Offer</th><th>Available</th><th></th></tr>${db.menu.map(m=>`<tr><td><div class="row" style="flex-wrap:nowrap"><img class="thumb" src="${esc(mediaSrc(m.img))}" alt=""><b>${esc(m.name)}</b></div></td><td>${esc(m.cat)}</td><td>${kes(m.price)}</td><td>${m.offer?kes(m.offer):'-'}</td><td><input type="checkbox" style="width:auto" data-a="itemAvail" data-v="${m.id}" ${m.avail?'checked':''} aria-label="Available"></td><td><div class="row"><button class="btn sm ghost" data-a="itemForm" data-v="${m.id}">Edit</button><button class="btn sm ghost" data-a="itemDel" data-v="${m.id}">Delete</button></div></td></tr>`).join('')}</table></div>`}
+function aOrders(){const f=S.af.o||'',st=S.af.os||'';const L=db.orders.filter(o=>(!st||o.status===st)&&(!f||(o.ref+o.name+o.phone).toLowerCase().includes(f.toLowerCase()))).sort((a,b)=>b.created-a.created);
+ return`<h2>Food orders</h2><div class="fgrid"><label>Search<input id="of" value="${esc(f)}" placeholder="Name, phone, reference"></label><label>Status<select id="os"><option value="">All</option>${OS.map(s=>`<option value="${s}" ${st===s?'selected':''}>${lbl(s)}</option>`).join('')}</select></label></div>
+ <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">${L.map(o=>`<div class="panel stack"><div class="line"><b>${o.ref}</b>${pill(o.status)}</div><div class="small muted">${ftime(o.created)} · ${lbl(o.type)}${o.sample?' · sample':''}</div><div><b>${esc(o.name)}</b> <span class="small muted">${esc(o.phone)}</span></div>${o.type==='DELIVERY'?`<div class="small">${esc(o.addr)}${o.instr?' ('+esc(o.instr)+')':''}<br>${esc((db.areas.find(a=>a.id===o.area)||{}).name||'')}</div>`:''}<div class="small">${o.items.map(i=>`${i.qty} x ${esc(i.name)}${i.opts.length?' ('+esc(i.opts.join(', '))+')':''}`).join('<br>')}</div><div class="line"><b>${kes(o.total)}</b>${pill(o.pay.status)}</div>
+ <div class="row">${o.status==='PENDING'?`<button class="btn sm" data-a="ordSet" data-v="${o.ref}:CONFIRMED">Confirm</button><button class="btn sm danger" data-a="ordSet" data-v="${o.ref}:CANCELLED">Reject</button>`:''}<select data-a="ordStatus" data-v="${o.ref}" aria-label="Update status">${OS.map(s=>`<option value="${s}" ${s===o.status?'selected':''}>${lbl(s)}</option>`).join('')}</select></div></div>`).join('')||'<div class="empty">No orders match.</div>'}</div>`}
+function aCustomers(){const m=new Map();const add=(n,p,e)=>{const k=p||e;if(!m.has(k))m.set(k,{n,p,e,b:0,o:0,sp:0});return m.get(k)};
+ db.reservations.forEach(r=>{const c=add(r.name,r.phone,r.email);c.b++;if(r.status!=='CANCELLED')c.sp+=r.total});db.orders.forEach(o=>{const c=add(o.name,o.phone,'');c.o++;if(o.status!=='CANCELLED')c.sp+=o.total});
+ return`<h2>Customers</h2><p class="small muted">Only name, phone and email are stored. Access is limited to authorised staff.</p><div class="tw panel"><table><tr><th>Name</th><th>Phone</th><th>Email</th><th>Bookings</th><th>Orders</th><th>Total value</th></tr>${[...m.values()].map(c=>`<tr><td>${esc(c.n)}</td><td>${esc(c.p)}</td><td>${esc(c.e||'-')}</td><td>${c.b}</td><td>${c.o}</td><td>${kes(c.sp)}</td></tr>`).join('')}</table></div>
+ ${(db.messages||[]).length?`<h3>Contact messages</h3><div class="panel stack">${db.messages.map(x=>`<div><b>${esc(x.name)}</b> <span class="small muted">${esc(x.contact)} · ${ftime(x.t)}</span><p>${esc(x.msg)}</p></div>`).join('')}</div>`:''}`}
+function aReports(){const t=today(),ym=t.slice(0,7);const R=db.reservations.filter(r=>r.status!=='CANCELLED'&&r.status!=='REJECTED'),O=db.orders.filter(o=>o.status!=='CANCELLED');
+ const sum=(a,f)=>a.filter(f).reduce((s,x)=>s+x.total,0);const rv=revenue();
+ const occ=db.rooms.filter(r=>r.active).map(r=>{const days=[...Array(30)].map((_,i)=>addDays(t,i)).filter(d=>!roomFree(r.id,d,addDays(d,1))).length;return[r.name,days]});
+ return`<div class="row" style="justify-content:space-between"><h2>Reports</h2><div class="row"><button class="btn ghost" data-a="exp" data-v="bookings">Export bookings CSV</button><button class="btn ghost" data-a="exp" data-v="orders">Export orders CSV</button></div></div>
+ <div class="kpis"><div class="kpi"><small>Bookings today</small><b>${R.filter(r=>iso(r.created)===t).length}</b></div><div class="kpi"><small>Bookings this month</small><b>${R.filter(r=>iso(r.created).startsWith(ym)).length}</b></div><div class="kpi"><small>Food orders this month</small><b>${O.filter(o=>iso(o.created).startsWith(ym)).length}</b></div><div class="kpi"><small>Room value (all)</small><b>${kes(sum(R,()=>1))}</b></div><div class="kpi"><small>Food sales (all)</small><b>${kes(sum(O,()=>1))}</b></div><div class="kpi"><small>Verified revenue</small><b>${kes(rv.real)}</b><span class="small muted">Demo payments excluded (${kes(rv.demo)})</span></div></div>
+ <div class="panel stack"><b>Occupancy, next 30 nights</b>${occ.map(([n,d])=>`<div class="line small"><span style="min-width:130px">${esc(n)}</span><div style="flex:1;background:var(--skyl);height:12px;align-self:center"><div style="width:${d/30*100}%;background:var(--navy2);height:100%"></div></div><span>${d}/30</span></div>`).join('')}</div>`}
+function aSettings(){const s=db.settings;const f=(k,l,t)=>`<label>${l}<input data-s="${k}" value="${esc(s[k])}" ${t||''}></label>`;
+ return`<h2>Settings</h2><form class="panel stack" data-form="settings"><h3>Hotel details</h3><div class="fgrid">${f('name','Hotel name')}${f('phone','Phone')}${f('whatsapp','WhatsApp')}${f('email','Email')}${f('location','Physical location')}${f('hours','Business hours')}</div>
+ <h3>Restaurant and delivery</h3><div class="fgrid">${f('openFrom','Kitchen opens','type="time"')}${f('openTo','Kitchen closes','type="time"')}${f('cancelHours','Free cancellation (hours before check-in)','type="number" min="0"')}</div>
+ <div class="row">${[['delivery','Delivery enabled'],['payAtHotel','Pay at hotel enabled'],['payOnCollection','Pay on collection enabled']].map(([k,l])=>`<label style="flex-direction:row;align-items:center;gap:6px;text-transform:none;letter-spacing:0"><input type="checkbox" style="width:auto" data-c="${k}" ${s[k]?'checked':''}>${l}</label>`).join('')}</div>
+ <label>Cancellation rules text<textarea data-s="cancelNote" rows="2">${esc(s.cancelNote)}</textarea></label><button class="btn" style="align-self:flex-start">Save settings</button></form>
+ <div class="panel stack"><div class="row" style="justify-content:space-between"><h3>Delivery areas</h3><button class="btn sm" data-a="areaForm" data-v="">Add area</button></div><div class="tw"><table><tr><th>Area</th><th>Fee</th><th>Minimum order</th><th>Estimate</th><th>Active</th><th></th></tr>${db.areas.map(a=>`<tr><td>${esc(a.name)}</td><td>${kes(a.fee)}</td><td>${kes(a.min)}</td><td>${a.mins} min</td><td><input type="checkbox" style="width:auto" data-a="areaOn" data-v="${a.id}" ${a.active?'checked':''} aria-label="Active"></td><td><button class="btn sm ghost" data-a="areaForm" data-v="${a.id}">Edit</button></td></tr>`).join('')}</table></div></div>
+ <div class="panel stack"><h3>Demo data</h3><p class="small muted">Reset restores the sample rooms, menu, bookings and orders and removes anything you added.</p><button class="btn danger" style="align-self:flex-start" data-a="reset">Reset demo data</button></div>`}
+const ATAB={dash:aDash,media:aMedia,rooms:aRooms,bookings:aBookings,menu:aMenu,orders:aOrders,customers:aCustomers,reports:aReports,settings:aSettings};
+PAGES.admin={html(){if(!S.user||S.user.role==='CUSTOMER')return`<section class="band"><div class="wrap"><div class="empty">Staff access only. <a href="#account">Sign in</a> with a staff role.</div></div></section>`;
+ if(!can(S.tab))S.tab='dash';return`<div class="adm"><nav class="side" aria-label="Dashboard">${TABS.filter(t=>can(t[0])).map(([k,l])=>`<a data-a="tab" data-v="${k}" class="${S.tab===k?'on':''}" tabindex="0" role="button">${l}</a>`).join('')}<span class="small" style="padding:14px 12px;opacity:.7">${ROLES[S.user.role]}</span></nav><main class="amain" id="amain">${ATAB[S.tab]()}</main></div>`}};
+function aRefresh(){const m=$('#amain');if(m){m.innerHTML=ATAB[S.tab]();$$('.side a').forEach(a=>a.classList.toggle('on',a.dataset.v===S.tab))}}
+</script>
+<script>
+/* ===== Actions ===== */
+const A={},F={};
+const val=id=>{const e=document.getElementById(id);return e?e.value.trim():''};
+const norm=s=>String(s||'').replace(/[\s\-()]/g,'').toLowerCase();
+function readOrder(){const o=S.o;[['on','name'],['op','phone'],['oa','area'],['oad','addr'],['ol','land'],['oi','instr'],['ot','time']].forEach(([i,k])=>{const e=document.getElementById(i);if(e)o[k]=e.value})}
+function keepScroll(fn){const y=scrollY;fn();scrollTo(0,y)}
+function rerender(){keepScroll(()=>{const p=PAGES[S.route];$('#app').innerHTML=p.html()+cookieBar();header()})}
+A.burger=(v,e)=>{const n=$('#nav');const o=n.classList.toggle('open');e.setAttribute('aria-expanded',o)};
+A.closeModal=()=>closeModal();
+A.cfOk=()=>{closeModal();window._cf&&window._cf()};
+A.copyCsv=()=>{const t=$('#csvbox');t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value).then(()=>toast('CSV copied')).catch(()=>toast('Press Ctrl+C to copy the selected text'))};
+A.cookies=()=>{S.consent=null;render()};
+A.ckAll=()=>setConsent({essential:true,analytics:true,marketing:true});
+A.ckNone=()=>setConsent({essential:true,analytics:false,marketing:false});
+A.ckCustom=()=>modal(`<h3>Cookie preferences</h3><label style="flex-direction:row;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input type="checkbox" checked disabled style="width:auto">Essential (always on)</label><form data-form="ckSave" class="stack"><label style="flex-direction:row;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input id="ck1" type="checkbox" style="width:auto">Analytics</label><label style="flex-direction:row;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input id="ck2" type="checkbox" style="width:auto">Marketing</label><button class="btn">Save choices</button></form>`);
+F.ckSave=()=>setConsent({essential:true,analytics:$('#ck1').checked,marketing:$('#ck2').checked});
+A.slPrev=()=>{slShow(slIdx-1);slStart()};A.slNext=()=>{slShow(slIdx+1);slStart()};
+A.slPlay=(v,e)=>{slPlaying=!slPlaying;e.innerHTML=slPlaying?'&#10074;&#10074;':'&#9654;';e.setAttribute('aria-label',slPlaying?'Pause slideshow':'Play slideshow');slStart()};
+/* rooms */
+A.reserve=id=>{const r=db.rooms.find(x=>x.id===id),q=S.q,n=nights(q.in,q.out);if(!r)return;
+ modal(`<h3>Reserve ${esc(r.name)}</h3><div class="panel stack small"><div class="line"><span>${fdate(q.in)} to ${fdate(q.out)}</span><span>${n} night${n>1?'s':''}</span></div><div class="line"><span>${q.ad} adults, ${q.ch} children</span><b>${kes(r.price*n)}</b></div></div><form class="stack" data-form="reserve" data-v="${id}"><label>Full name<input id="rn" required></label><label>Phone<input id="rp" required inputmode="tel"></label><label>Email<input id="re" type="email" required></label>${payChoices('room')}<p class="small muted">${esc(db.settings.cancelNote)}</p><div class="row"><button class="btn gold">Submit reservation</button><button type="button" class="btn ghost" data-a="closeModal">Cancel</button></div></form>`)};
+F.reserve=(f)=>{const id=f.dataset.v,q=S.q,r=db.rooms.find(x=>x.id===id);const n=nights(q.in,q.out);
+ if(!r||!roomFree(id,q.in,q.out)){toast('Sorry, that room was just booked for these dates.','bad');closeModal();$('#roomlist')&&($('#roomlist').innerHTML=roomsList());return}
+ const m=(f.querySelector('input[name=pm]:checked')||{}).value||'Pay at hotel';
+ const rec={ref:ref('RB'),roomId:id,name:val('rn'),phone:val('rp'),email:val('re'),in:q.in,out:q.out,nights:n,adults:q.ad,children:q.ch,total:n*r.price,status:'PENDING',pay:payRecord(m),created:Date.now()};
+ db.reservations.push(rec);rememberCustomer(rec.name,rec.phone,rec.email);audit('Booking created '+rec.ref,'');save();
+ modal(`<h3>Reservation received</h3><p>Your booking reference</p><h1 style="color:var(--gold);font-size:2.2rem">${rec.ref}</h1><p class="small muted">Status: Pending. The hotel will confirm your booking. Use this reference with your phone number to track it. ${rec.pay.demo?'Payment was simulated (DEMO). No money moved.':''}</p><div class="row"><a class="btn" href="#reservations" data-a="closeModal">Track booking</a><button class="btn ghost" data-a="closeModal">Close</button></div>`);
+ S.look={kind:'room',ref:rec.ref,contact:rec.phone,found:{kind:'room',rec}};$('#roomlist')&&($('#roomlist').innerHTML=roomsList())};
+/* menu and cart */
+A.mcat=(v)=>{S.mq.cat=v;$$('#mcats .chip').forEach(c=>c.classList.toggle('on',c.dataset.v===v));$('#menulist').innerHTML=menuList()};
+A.addItem=id=>{const f=db.menu.find(m=>m.id===id);if(!f)return;
+ modal(`<h3>${esc(f.name)}</h3><p class="small muted">${esc(f.desc)}</p><form class="stack" data-form="addItem" data-v="${id}">${f.opts.length?`<fieldset style="border:1px solid var(--line);padding:10px"><legend class="small muted">Add-ons</legend>${f.opts.map(o=>`<label style="flex-direction:row;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input type="checkbox" name="op" value="${esc(o.n)}" style="width:auto">${esc(o.n)} (+${kes(o.p)})</label>`).join('')}</fieldset>`:''}<label>Quantity<input id="aq" type="number" min="1" max="20" value="1"></label><label>Special instructions<input id="an" placeholder="For example: no onions"></label><div class="row"><button class="btn gold">Add to order</button><button type="button" class="btn ghost" data-a="closeModal">Cancel</button></div></form>`)};
+F.addItem=f=>{cartAdd({id:f.dataset.v,qty:Math.max(1,Math.min(20,+val('aq')||1)),opts:[...f.querySelectorAll('input[name=op]:checked')].map(i=>i.value),note:val('an')});closeModal()};
+A.qty=v=>{readOrder();const[i,d]=v.split(':').map(Number);const c=S.cart[i];if(!c)return;c.qty+=d;if(c.qty<1)S.cart.splice(i,1);rerender()};
+A.rm=v=>{readOrder();S.cart.splice(+v,1);rerender()};
+A.otype=v=>{readOrder();S.o.type=v;rerender()};
+A.placeOrder=()=>{readOrder();const o=S.o;if(!S.cart.length)return;
+ if(!o.name||!o.phone||(o.type==='DELIVERY'&&(!o.addr||!o.area))){toast('Please complete your name, phone and delivery address.','bad');return}
+ const p=priceOrder(S.cart,o.type,o.area);if(p.error){toast(p.error,'bad');return}
+ if(p.min&&p.sub<p.min){toast('Minimum order for this area is '+kes(p.min),'bad');return}
+ const m=(($('input[name=pm]:checked')||{}).value)||'Pay on collection';
+ const rec={ref:ref('FO'),items:p.lines,type:o.type,area:o.type==='DELIVERY'?o.area:'',name:o.name,phone:o.phone,addr:o.addr+(o.land?' (near '+o.land+')':''),instr:o.instr,time:o.time,sub:p.sub,fee:p.fee,total:p.total,status:'PENDING',pay:payRecord(m),created:Date.now()};
+ db.orders.push(rec);rememberCustomer(o.name,o.phone,'');audit('Food order placed '+rec.ref,'');save();S.cart=[];S.placed=rec;render()};
+/* tracking */
+A.lookKind=v=>{S.look={kind:v,ref:'',contact:'',found:null};rerender()};
+A.trackThis=(v)=>{const o=db.orders.find(x=>x.ref===v);S.placed=null;S.look={kind:'food',ref:o.ref,contact:o.phone,found:{kind:'food',rec:o}}};
+F.look=()=>{const L=S.look;L.ref=val('lr');L.contact=val('lc');const r=L.ref.toUpperCase(),c=norm(L.contact);L.err='';L.found=null;
+ if(L.kind==='room'){const x=db.reservations.find(a=>a.ref===r&&(norm(a.phone)===c||norm(a.email)===c));x?L.found={kind:'room',rec:x}:L.err='No booking matches that reference and contact. Check both and try again.'}
+ else{const x=db.orders.find(a=>a.ref===r&&norm(a.phone)===c);x?L.found={kind:'food',rec:x}:L.err='No order matches that reference and phone number. Check both and try again.'}
+ $('#trk').innerHTML=trackView()};
+A.cancelRes=v=>confirmBox('Cancel booking '+v+'? This cannot be undone.',()=>{const r=db.reservations.find(x=>x.ref===v);r.status='CANCELLED';audit('Booking cancelled by guest '+v);save();S.look.found={kind:'room',rec:r};$('#trk').innerHTML=trackView();toast('Booking cancelled')},'Cancel booking');
+A.simNext=v=>{const o=db.orders.find(x=>x.ref===v),fl=statusFlow(o);const i=fl.indexOf(o.status);if(i>=0&&i<fl.length-1){o.status=fl[i+1];save();$('#trk').innerHTML=trackView();toast('Status: '+lbl(o.status))}};
+/* auth */
+function setUser(u){S.user=u;try{sessionStorage.setItem('rosablu-user',JSON.stringify(u))}catch(e){}}
+A.demoLogin=v=>{setUser({name:ROLES[v]+' (demo)',role:v});audit('Signed in','demo role '+v);go('#admin')};
+A.logout=()=>{S.user=null;try{sessionStorage.removeItem('rosablu-user')}catch(e){}go('#home');render()};
+F.custLogin=()=>{setUser({name:val('cln'),email:val('cle'),phone:val('clp'),role:'CUSTOMER'});rememberCustomer(val('cln'),val('clp'),val('cle'));save();render();toast('Signed in')};
+F.contact=()=>{(db.messages=db.messages||[]).unshift({name:val('cn'),contact:val('cc'),msg:val('cm'),t:Date.now()});save();$('#cn').form.reset();toast('Message sent. The hotel will reply to you.')};
+F.none=()=>{};
+/* admin */
+A.tab=v=>{S.tab=v;aRefresh()};
+const touch=(a,d)=>{audit(a,d);save()};
+A.mSlide=(v,e)=>{const m=db.media.find(x=>x.id===v);m.slide=e.checked;touch('Slideshow '+(m.slide?'added: ':'removed: ')+m.title)};
+A.mActive=(v,e)=>{const m=db.media.find(x=>x.id===v);m.active=e.checked;touch('Media '+(m.active?'activated: ':'deactivated: ')+m.title);aRefresh()};
+A.mMove=v=>{const[i,d]=v.split(':').map(Number),j=i+d;if(j<0||j>=db.media.length)return;[db.media[i],db.media[j]]=[db.media[j],db.media[i]];touch('Media reordered');aRefresh()};
+A.mDel=v=>{const m=db.media.find(x=>x.id===v);if(db.rooms.some(r=>r.img===v)||db.menu.some(i=>i.img===v)){toast('This image is used by a room or menu item. Choose another image there first.','bad');return}
+ confirmBox('Delete "'+m.title+'" from the media library?',()=>{db.media=db.media.filter(x=>x.id!==v);touch('Media deleted: '+m.title);aRefresh()},'Delete')};
+function upload(file){if(!file)return;const vid=file.type==='video/mp4',img=/^image\/(jpeg|png|webp)$/.test(file.type);
+ if(!vid&&!img){toast('Only JPG, PNG, WebP or MP4 files are allowed.','bad');return}
+ if(file.size>(vid?25:8)*1048576){toast('That file is too large. Limit is '+(vid?'25':'8')+' MB.','bad');return}
+ const fr=new FileReader();fr.onload=()=>{db.media.push({id:'u'+uid(),type:vid?'video':'image',title:file.name.replace(/\.[^.]+$/,''),cat:'HOTEL',src:fr.result,active:true,slide:false,placeholder:false});touch('Media uploaded: '+file.name);aRefresh();toast('Uploaded. Tick Slideshow to show it on the homepage.')};fr.onerror=()=>toast('Could not read that file.','bad');fr.readAsDataURL(file)}
+const imgOpts=(sel,cat)=>db.media.filter(m=>m.type==='image'&&m.active).map(m=>`<option value="${m.id}" ${m.id===sel?'selected':''}>${esc(m.title)}</option>`).join('');
+const chk=(id,l,on)=>`<label style="flex-direction:row;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input id="${id}" type="checkbox" style="width:auto" ${on?'checked':''}>${l}</label>`;
+A.roomForm=v=>{const r=db.rooms.find(x=>x.id===v)||{name:'',price:8000,adults:2,children:1,desc:'',amen:['Wi-Fi'],active:true,img:''};
+ modal(`<h3>${v?'Edit':'Add'} room</h3><form class="stack" data-form="roomSave" data-v="${v}"><label>Name<input id="fn" required value="${esc(r.name)}"></label><div class="fgrid"><label>Price per night (KES)<input id="fp" type="number" min="0" required value="${r.price}"></label><label>Adults<input id="fa" type="number" min="1" value="${r.adults}"></label><label>Children<input id="fc" type="number" min="0" value="${r.children}"></label></div><label>Description<textarea id="fd" rows="3">${esc(r.desc)}</textarea></label><label>Amenities (comma separated)<input id="fm" value="${esc(r.amen.join(', '))}"></label><label>Photograph<select id="fi">${imgOpts(r.img)}</select></label>${chk('fv','Listed on the website',r.active)}<div class="row"><button class="btn">Save room</button><button type="button" class="btn ghost" data-a="closeModal">Cancel</button></div></form>`)};
+F.roomSave=f=>{const id=f.dataset.v,d={name:val('fn'),price:+val('fp'),adults:+val('fa')||1,children:+val('fc')||0,desc:val('fd'),amen:val('fm').split(',').map(s=>s.trim()).filter(Boolean),img:val('fi'),active:$('#fv').checked};
+ if(id)Object.assign(db.rooms.find(x=>x.id===id),d);else db.rooms.push({...d,id:'r'+uid(),blocks:[]});touch('Room saved: '+d.name);closeModal();aRefresh();toast('Room saved')};
+A.roomBlock=v=>{const r=db.rooms.find(x=>x.id===v);modal(`<h3>Block ${esc(r.name)}</h3><form class="stack" data-form="blockSave" data-v="${v}"><div class="fgrid"><label>From<input id="bf1" type="date" required></label><label>Until (check-out day)<input id="bf2" type="date" required></label></div><label>Reason<input id="br" placeholder="Maintenance"></label><button class="btn">Block dates</button></form>${r.blocks.length?`<h4>Current blocks</h4>${r.blocks.map((b,i)=>`<div class="line small"><span>${fdate(b.from)} to ${fdate(b.to)} ${esc(b.reason)}</span><button class="btn sm ghost" data-a="blkDel" data-v="${v}:${i}">Remove</button></div>`).join('')}`:''}`)};
+F.blockSave=f=>{const r=db.rooms.find(x=>x.id===f.dataset.v),a=val('bf1'),b=val('bf2');if(b<=a){toast('End date must be after the start date.','bad');return}
+ if(db.reservations.some(x=>x.roomId===r.id&&ACTIVE.includes(x.status)&&a<x.out&&x.in<b)){toast('Active bookings exist in that period. Move or cancel them first.','bad');return}
+ r.blocks.push({from:a,to:b,reason:val('br')});touch('Room blocked: '+r.name);closeModal();aRefresh();toast('Dates blocked')};
+A.blkDel=v=>{const[id,i]=v.split(':');db.rooms.find(x=>x.id===id).blocks.splice(+i,1);touch('Room block removed');closeModal();aRefresh()};
+A.roomDel=v=>{const r=db.rooms.find(x=>x.id===v);if(db.reservations.some(x=>x.roomId===v&&ACTIVE.includes(x.status))){toast('This room has active bookings. Hide it instead.','bad');return}
+ confirmBox('Remove '+r.name+'? Past bookings keep their record.',()=>{db.rooms=db.rooms.filter(x=>x.id!==v);touch('Room removed: '+r.name);aRefresh()},'Remove')};
+A.resStatus=(v,e)=>{const r=db.reservations.find(x=>x.ref===v),s=e.value;
+ if(ACTIVE.includes(s)&&!ACTIVE.includes(r.status)&&!roomFree(r.roomId,r.in,r.out,r.ref)){toast('Cannot restore: those dates now overlap another booking.','bad');aRefresh();return}
+ r.status=s;touch('Booking '+v+' set to '+lbl(s));aRefresh();toast('Booking '+lbl(s).toLowerCase())};
+A.catForm=()=>modal(`<h3>Menu categories</h3><form class="stack" data-form="catSave"><label>One per line<textarea id="fcl" rows="10">${esc(db.cats.join('\n'))}</textarea></label><button class="btn">Save categories</button></form>`);
+F.catSave=()=>{const L=val('fcl').split('\n').map(s=>s.trim()).filter(Boolean);const miss=[...new Set(db.menu.map(m=>m.cat))].filter(c=>!L.includes(c));if(miss.length){toast('Items still use: '+miss.join(', ')+'. Move them first.','bad');return}db.cats=L;touch('Categories saved');closeModal();aRefresh()};
+A.itemForm=v=>{const m=db.menu.find(x=>x.id===v)||{name:'',cat:db.cats[0],price:500,offer:null,desc:'',opts:[],avail:true,img:''};
+ modal(`<h3>${v?'Edit':'Add'} menu item</h3><form class="stack" data-form="itemSave" data-v="${v}"><label>Name<input id="in1" required value="${esc(m.name)}"></label><div class="fgrid"><label>Category<select id="in2">${db.cats.map(c=>`<option ${c===m.cat?'selected':''}>${esc(c)}</option>`).join('')}</select></label><label>Price (KES)<input id="in3" type="number" min="0" required value="${m.price}"></label><label>Offer price (optional)<input id="in4" type="number" min="0" value="${m.offer||''}"></label></div><label>Description<textarea id="in5" rows="2">${esc(m.desc)}</textarea></label><label>Add-ons (Name:price, comma separated)<input id="in6" value="${esc(m.opts.map(o=>o.n+':'+o.p).join(', '))}"></label><label>Photograph<select id="in7">${imgOpts(m.img)}</select></label>${chk('in8','Available',m.avail)}<div class="row"><button class="btn">Save item</button><button type="button" class="btn ghost" data-a="closeModal">Cancel</button></div></form>`)};
+F.itemSave=f=>{const id=f.dataset.v;const opts=val('in6').split(',').map(s=>s.trim()).filter(Boolean).map(s=>{const[n,p]=s.split(':');return{n:n.trim(),p:+p||0}});
+ const d={name:val('in1'),cat:val('in2'),price:+val('in3'),offer:val('in4')?+val('in4'):null,desc:val('in5'),opts,img:val('in7'),avail:$('#in8').checked};
+ if(id)Object.assign(db.menu.find(x=>x.id===id),d);else db.menu.push({...d,id:'i'+uid()});touch('Menu item saved: '+d.name);closeModal();aRefresh();toast('Menu item saved')};
+A.itemAvail=(v,e)=>{const m=db.menu.find(x=>x.id===v);m.avail=e.checked;touch(m.name+(m.avail?' available':' sold out'))};
+A.itemDel=v=>{const m=db.menu.find(x=>x.id===v);confirmBox('Delete "'+m.name+'" from the menu?',()=>{db.menu=db.menu.filter(x=>x.id!==v);S.cart=S.cart.filter(c=>c.id!==v);touch('Menu item deleted: '+m.name);aRefresh()},'Delete')};
+A.ordSet=v=>{const[r,s]=v.split(':');const o=db.orders.find(x=>x.ref===r);o.status=s;touch('Order '+r+' '+lbl(s));aRefresh()};
+A.ordStatus=(v,e)=>{const o=db.orders.find(x=>x.ref===v);o.status=e.value;touch('Order '+v+' '+lbl(o.status));aRefresh();toast('Order '+lbl(o.status))};
+A.exp=v=>{if(v==='bookings')csv('Bookings',[['Reference','Guest','Phone','Room','Check-in','Check-out','Nights','Total KES','Status','Payment','Demo payment'],...db.reservations.map(r=>[r.ref,r.name,r.phone,(db.rooms.find(x=>x.id===r.roomId)||{}).name,r.in,r.out,r.nights,r.total,r.status,r.pay.status,r.pay.demo?'yes':'no'])]);
+ else csv('Food orders',[['Reference','Customer','Phone','Type','Items','Subtotal','Delivery fee','Total KES','Status','Payment','Demo payment'],...db.orders.map(o=>[o.ref,o.name,o.phone,o.type,o.items.map(i=>i.qty+'x '+i.name).join('; '),o.sub,o.fee,o.total,o.status,o.pay.status,o.pay.demo?'yes':'no'])])};
+A.areaOn=(v,e)=>{db.areas.find(a=>a.id===v).active=e.checked;touch('Delivery area toggled')};
+A.areaForm=v=>{const a=db.areas.find(x=>x.id===v)||{name:'',fee:300,min:1000,mins:45,active:true};modal(`<h3>${v?'Edit':'Add'} delivery area</h3><form class="stack" data-form="areaSave" data-v="${v}"><label>Area name<input id="an1" required value="${esc(a.name)}"></label><div class="fgrid"><label>Fee (KES)<input id="an2" type="number" min="0" value="${a.fee}"></label><label>Minimum order (KES)<input id="an3" type="number" min="0" value="${a.min}"></label><label>Estimated minutes<input id="an4" type="number" min="5" value="${a.mins}"></label></div><button class="btn">Save area</button></form>`)};
+F.areaSave=f=>{const id=f.dataset.v,d={name:val('an1'),fee:+val('an2'),min:+val('an3'),mins:+val('an4')};if(id)Object.assign(db.areas.find(a=>a.id===id),d);else db.areas.push({...d,id:'a'+uid(),active:true});touch('Delivery area saved');closeModal();aRefresh()};
+F.settings=()=>{$$('[data-s]').forEach(e=>db.settings[e.dataset.s]=e.value);$$('[data-c]').forEach(e=>db.settings[e.dataset.c]=e.checked);touch('Settings saved');header();footer();toast('Settings saved')};
+A.reset=()=>confirmBox('Restore the sample data? Anything you added will be removed.',()=>{db=seed();save();S.cart=[];toast('Demo data restored');render()},'Reset');
+/* ===== Event wiring ===== */
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t||t.tagName==='SELECT'||t.type==='checkbox')return;if(t.tagName==='A'&&t.getAttribute('href')==='#')e.preventDefault();const f=A[t.dataset.a];f&&f(t.dataset.v,t,e)});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('[role=button][data-a]'))e.target.click();if(e.key==='Escape')closeModal()});
+document.addEventListener('submit',e=>{const f=e.target.closest('[data-form]');if(!f)return;e.preventDefault();const h=F[f.dataset.form];h&&h(f)});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.dataset.a&&(t.tagName==='SELECT'||t.type==='checkbox')){A[t.dataset.a]&&A[t.dataset.a](t.dataset.v,t);return}
+ if(t.id==='mup'){upload(t.files[0]);t.value='';return}
+ if(['qin','qout','qad','qch'].includes(t.id)){const q=S.q;q.in=val('qin');q.out=val('qout');q.ad=Math.max(1,+val('qad')||1);q.ch=Math.max(0,+val('qch')||0);if(q.out<=q.in){q.out=addDays(q.in,1);$('#qout').value=q.out}$('#qout').min=addDays(q.in,1);$('#roomlist').innerHTML=roomsList();return}
+ if(t.id==='oa'){readOrder();rerender();return}
+ if(t.id==='bs'||t.id==='os'){S.af[t.id]=t.value;aRefresh()}});
+document.addEventListener('input',e=>{const t=e.target;
+ if(t.id==='ms'){S.mq.s=t.value;$('#menulist').innerHTML=menuList()}
+ if(t.id==='bf'||t.id==='of'){S.af[t.id==='bf'?'b':'o']=t.value;const id=t.id;aRefresh();const n=document.getElementById(id);n.focus();n.setSelectionRange(n.value.length,n.value.length)}});
+if(!location.hash)location.hash='#home';
+render();
+</script>
+
+</body></html>
